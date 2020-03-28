@@ -1,15 +1,16 @@
 #!/bin/bash 
 
 #process log 
-infile=gifLog
-tmpfile=gifTmp
-outfile=gifHosts
+infile=log
+tmpfile=tmp
+outfile=hosts
 proc=$(cat $infile | cut -d$'\n' -f1 | cut -d' ' -f1 -f4 >> $tmpfile)
 
+mkdir -p ./out
 # read & write to out
 while read host addr
 do 
-  echo ${addr} >> $host.gifsList
+  echo ${addr} >> out/$host.gifsList
 done < "${tmpfile}"
 
 # cleanup
